@@ -1,0 +1,47 @@
+
+.checkout-container {
+    max-width: 80%;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-container h2 {
+    text-align: center;
+}
+
+.checkout-container label {
+    display: block;
+    margin-top: 10px;
+}
+
+.checkout-container input,
+.checkout-container select,
+.checkout-container textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.checkout-container .product-list {
+    margin: 10px 0;
+}
+
+.checkout-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.checkout-container button:hover {
+    background-color: #484747;
+}

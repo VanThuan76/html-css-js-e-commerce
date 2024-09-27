@@ -1,0 +1,78 @@
+body {
+    overflow-x: hidden;
+    font-family: "Montserrat";
+}
+header {
+    position: relative;
+    opacity: 1;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    /* background-image: url("../images/home/1.jpeg"); */
+    background-attachment: fixed;
+    width: 100%;
+}
+
+
+.mapouter {
+    width: 100%;
+    position: relative;
+    text-align: right;
+    border-radius: 14px;
+}
+
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.row-about-us {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* flex-wrap: wrap; */
+    margin: 0 40px;
+    gap: 20px;
+}
+
+.col-about-us{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    margin: 0 10px 0 10px;
+}
+h3 {
+    margin: 0px;
+}
+h1 {
+    text-align: center;
+}
+
+#about-us,
+h1 {
+    font-family: "Montserrat";
+}
+
+nav {
+    position: relative;
+    background: transparent;
+}
+
+#about-us>p {
+    font-size: 16px;
+    text-align: justify;
+}
+
+figure>img {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 7px;
+}

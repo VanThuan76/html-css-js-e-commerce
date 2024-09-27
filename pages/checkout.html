@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Checkout Form</title>
+    <link rel="icon" href="../images/icon/icon_cart.png" sizes="32x32" />
+    <link rel="stylesheet" href="../css/page/checkout.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <!-- <link rel="stylesheet" href="css/preloader.css" /> -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <!-- thư viện swiperjs -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- // thư viện icon -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="./js/preloader.js"></script>
+  </head>
+  <body>
+    <header id="navbar-component"></header>
+    <div class="container-icon">
+      <div class="parent-icon">
+        <div class="icon-menu-open">
+          <i class="fas fa-bars fa-lg"></i>
+        </div>
+        <div class="icon-menu-close">
+          <i class="fas fa-times fa-lg"></i>
+        </div>
+      </div>
+    </div>
+    <div class="checkout-container">
+      <h2>Checkout Form</h2>
+      <form id="checkoutForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required />
+
+        <label for="payment-method">Payment Method:</label>
+        <select id="payment-method" name="payment-method" required>
+          <option value="credit-card">Credit Card</option>
+          <option value="paypal">PayPal</option>
+          <option value="cash-on-delivery">Cash on Delivery</option>
+        </select>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+          <option value="pending">Pending</option>
+        </select>
+
+        <div class="product-list">
+          <h3>Product List</h3>
+        </div>
+
+        <label for="total">Total Amount:</label>
+        <input type="text" id="total" name="total" value="0" readonly />
+        <button type="submit">Place Order</button>
+      </form>
+    </div>
+    <footer id="footer"></footer>
+    <script defer src="../main.js"></script>
+    <script defer src="../js/cart.js"></script>
+  </body>
+</html>

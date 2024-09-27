@@ -1,0 +1,141 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: "Montserrat";
+  overflow-x: hidden;
+}
+
+nav {
+  position: relative !important;
+}
+
+section {
+  margin: 0 5% 0 5%;
+}
+
+.row-product {
+  display: flex;
+  flex-direction: row;
+}
+
+.row-product > .info-product {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.row-product > .col1 {
+  width: 45%;
+  text-align: right;
+}
+
+.col1 > img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 7px;
+}
+
+.row-product > div {
+  margin: 20px;
+}
+
+.swiper {
+  width: 100%;
+  height: 800px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.swiper-slide img {
+  display: block;
+  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  border-radius: 7px;
+}
+
+.slide-info img {
+  height: 100%;
+}
+.info-product > h1 {
+  font-size: 3vw;
+}
+
+.info-product > p {
+  margin-right: 10%;
+  text-align: justify;
+  font-size: 1.5vw;
+  line-height: 1.3em;
+}
+
+span {
+  display: inline-flex;
+  padding: 0;
+}
+
+h2 {
+  font-size: 1.5vw;
+}
+
+.button-cart {
+  padding: 20px 50px;
+  margin-top: 10px;
+  color: white;
+  background-color: #000;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 16px;
+  text-decoration: none;
+}
+
+.button-cart:hover {
+  background-color: white;
+  color: #000;
+  border: 1px solid black;
+}
+
+.wishlist {
+  text-decoration: none;
+  color: #555555;
+}
+
+.wishlist:hover {
+  color: #000;
+}
+
+/* Thuanfix */
+.parent-col-detail-product {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 10px;
+  border-top: 1px solid #000;
+}
+.col-info{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding: 0;
+}
+
+video {
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+video:focus {
+  outline: none;
+}
+#info-product-number {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 5px;
+}

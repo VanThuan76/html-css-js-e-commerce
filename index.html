@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>AMEE</title>
+    <link rel="icon" href="images/icon/icon_cart.png" sizes="32x32" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <!-- <link rel="stylesheet" href="css/preloader.css" /> -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <!-- // thư viện icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <!-- thư viện swiperjs -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">
+          <img src="./images/home/shop.jpeg" />
+          <div class="pxtext">
+            <span class="border"> Bộ sưu tập Caviagi </span>
+            <p><a href="pages/men.html">Shop Now</a></p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="./images/home/shop_4.jpeg" />
+          <div class="pxtext">
+            <span class="border"> Bộ sưu tập Madame </span>
+            <p><a href="pages/men.html">Shop Now</a></p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="./images/home/shop_8.png" />
+          <div class="pxtext">
+            <span class="border"> Bộ sưu tập Snoopy </span>
+            <p><a href="pages/men.html">Shop Now</a></p>
+          </div>
+        </div>
+        ...
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+    <header id="navbar-component"></header>
+
+    <div class="container-icon">
+      <div class="parent-icon">
+        <div class="icon-menu-open">
+          <i class="fas fa-bars fa-lg"></i>
+        </div>
+        <div class="icon-menu-close">
+          <i class="fas fa-times fa-lg"></i>
+        </div>
+      </div>
+    </div>
+    <section>
+      <div class="row">
+        <div class="col">
+          <div class="overlay-image">
+            <a href="pages/men.html">
+              <img class="image" src="images/home/men.png" alt="Alt text" />
+              <div class="normal">
+                <div class="text">MEN</div>
+              </div>
+              <div class="hover">
+                <img
+                  class="image"
+                  src="images/home/men.png"
+                  alt="Alt text hover"
+                />
+                <div class="text">MEN</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col">
+          <div class="overlay-image">
+            <a href="pages/women.html">
+              <img class="image" src="images/home/women.png" alt="Alt text" />
+              <div class="normal">
+                <div class="text">WOMEN</div>
+              </div>
+              <div class="hover">
+                <img
+                  class="image"
+                  src="images/home/women2.png"
+                  alt="Alt text hover"
+                />
+                <div class="text">WOMEN</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col">
+          <div class="overlay-image">
+            <a href="pages/baby.html">
+              <img class="image" src="images/home/baby.png" alt="Alt text" />
+              <div class="normal">
+                <div class="text">BABY</div>
+              </div>
+              <div class="hover">
+                <img
+                  class="image"
+                  src="images/home/baby2.png"
+                  alt="Alt text hover"
+                />
+                <div class="text">BABY</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="preview">
+      <h2 align="center">Best Sellers</h2>
+      <div class="row-bestsale">
+        <figure class="item">
+          <a href="./product/info.html">
+            <img src="./images/home/AN07.png" alt="" width="100%" />
+            <figcaption>Áo Thun Waffle</figcaption>
+          </a>
+        </figure>
+        <figure class="item">
+          <a href="./product/info.html">
+            <img src="./images/home/QM01.png" alt="" width="100%" />
+            <figcaption>Quần Washed Jersey</figcaption>
+          </a>
+        </figure>
+        <figure class="item">
+          <a href="./product/info.html">
+            <img src="./images/home/TX01.png" width="100%" />
+            <figcaption>Túi Bán Nguyệt</figcaption>
+          </a>
+        </figure>
+        <figure class="item">
+          <a href="./product/info.html">
+            <img src="./images/home/BABY01.png" alt="" width="100%" />
+            <figcaption>Áo Khoác Chống UV</figcaption>
+          </a>
+        </figure>
+      </div>
+    </section>
+
+    <h3 style="text-align: center">
+      <a href="./HTML/survey.html">Click here to take a quick survey</a>
+    </h3>
+
+    <div id="suggestion-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>Hãy cho chúng tôi biết sở thích của bạn!</h2>
+            <div id="quiz"></div>
+            <div id="suggestions"></div>
+        </div>
+    </div>
+
+
+    <footer id="footer"></footer>
+    <script defer src="./main.js"></script>
+    <script defer src="./js/modal.js"></script>
+  </body>
+</html>

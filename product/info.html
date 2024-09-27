@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>AIRism Cotton Áo Thun</title>
+    <link rel="icon" href="../images/icon/icon_cart.png" sizes="32x32" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/product/info.css" />
+    <!-- <link rel="stylesheet" href="css/preloader.css" /> -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <!-- // thư viện icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- thư viện swiperjs -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <header id="navbar-component"></header>
+    <!-- //Thuanfix -->
+    <div class="container-icon">
+        <div class="parent-icon">
+          <div class="icon-menu-open">
+            <i class="fas fa-bars fa-lg"></i>
+          </div>
+          <div class="icon-menu-close">
+            <i class="fas fa-times fa-lg"></i>
+          </div>
+        </div>
+      </div>
+    <section>
+        <div class="row-product">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+            <!-- Thuanfix -->
+            <div class="info-product">
+                <h1 class="name-product"></h1>
+                <h2 class="price-product"></h2>
+                <div class="parent-col-detail-product">
+                    <div class="col-info">
+                        <h3>Màu sắc</h3>
+                        <div id="info-product-color"></div>
+                    </div>
+
+                    <div class="col-info">
+                        <h3>Kích cỡ</h3>
+                        <div id="info-product-size"></div>
+                    </div>
+                </div>
+                <hr />
+                <div class="col-info-number">
+                    <hr />
+                    <h3>Số lượng</h3>
+                    <div id="info-product-number">
+                        <select name="number" id="number-select">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="button-cart">THÊM VÀO GIỎ HÀNG</button>
+            </div>
+
+        </div>
+        </div>
+    </section>
+    <section class="description">
+        <p class="content-description"></p>
+    </section>
+
+    <footer id="footer"></footer>
+    <script defer src="../main.js"></script>
+    <script defer src="../js/product.js"></script>
+</body>

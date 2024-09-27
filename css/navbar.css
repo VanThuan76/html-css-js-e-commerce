@@ -1,0 +1,107 @@
+nav>ul>li {
+    display: inline-block;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    overflow: auto;
+    padding: 10px 30px 20px 10px;
+}
+
+.container-icon {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    padding: 10px 30px 20px 10px;
+    
+}
+.parent-icon {
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+}
+.icon-menu-open {
+    position: absolute;
+    top: 100%;
+    right: 5%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    z-index: 999;
+}
+.icon-menu-close {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 5%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    z-index: 999;   
+}
+
+.primary-nav {
+    float: left;
+    font-size: 20px;
+}
+
+.primary-nav>a {
+    letter-spacing: 5px;
+}
+
+.primary-nav>img {
+    width: 50px;
+}
+
+.secondary-nav>a {
+    letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 15px;
+    letter-spacing: 3px;
+    padding-right: 20px;
+}
+
+.secondary-nav {
+    float: right;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+nav>ul>li>a {
+    color: black;
+    font-family: helvetica;
+    text-decoration: none;
+}
+nav>ul>li>i {
+    color: #555;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+}
+
+nav>ul>li>a:hover {
+    color: #cb4335;
+    transition: .7s ease;
+}
+
+.list-menu-mobile {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 30px;
+    justify-content:left ;
+    align-items: left;
+    margin: 30px 0 !important;
+    padding: 0 !important;
+}
+.nav-list-menu-mobile {
+    position: relative !important;
+    height: 0;
+}
