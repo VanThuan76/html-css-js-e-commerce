@@ -114,16 +114,25 @@ h2 {
   display: flex;
   justify-content: start;
   align-items: start;
-  gap: 10px;
+  gap: 20px;
   border-top: 1px solid #000;
 }
-.col-info{
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    padding: 0;
+.col-info {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  padding: 0;
 }
+
+/* Thuanfix2 */
+.col-info > h3 {
+  width: 100%;
+}
+.col-info > #info-product-color {
+  width: 100%;
+}
+/* --- */
 
 video {
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.6);

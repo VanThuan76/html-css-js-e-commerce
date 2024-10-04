@@ -33,7 +33,9 @@ const questions = [
 ];
 
 let currentQuestion = 0;
-let userResponses = {};
+//Thuanfix2
+let userResponses = [];
+//---
 
 function renderQuestion() {
   const quizDiv = document.getElementById("quiz");
@@ -54,8 +56,9 @@ function renderQuestion() {
   quizDiv.appendChild(questionElement);
 }
 
+//Thuanfix2
 function handleAnswer(key, answer) {
-  userResponses[key] = answer;
+  userResponses.push({ [key]: answer });
 
   if (currentQuestion < questions.length - 1) {
     currentQuestion++;
@@ -65,6 +68,7 @@ function handleAnswer(key, answer) {
     suggestProducts();
   }
 }
+///---
 
 function suggestProducts() {
   const quizDiv = document.getElementById("quiz");

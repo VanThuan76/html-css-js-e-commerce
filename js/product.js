@@ -2,22 +2,29 @@
 const pathName = window.location.pathname;
 const fullUrl = window.location.href;
 
-// lay data product
-const API_KEY = "AIzaSyC0xEZjHni3DaJ-M2zOQRMCSYaMlj52z6k";
-const SHEET_ID = "1Y6mItoJuv6vRqi70oltmGod-5FKSYFmlCIlhQirlW5E";
-const TABLE_PRODUCT = "table_product!A1:F200";
-const TABLE_CUSTOMER_PRODUCT = "table_customer_product!A1:I200";
-const TABLE_PRODUCT_IMAGE = "table_product_image!A1:C200";
-const TABLE_PRODUCT_SIZE = "table_product_size!A1:C200";
-const TABLE_PRODUCT_COLOR = "table_product_color!A1:C200";
-const TABLE_COLOR = "table_color!A1:C200";
-const TABLE_SIZE = "table_size!A1:B200";
-
 // lay du lieu trong localStorage
 function getCart() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   return cart;
 }
+
+//Thuanfix2
+function filterProductsBySurvey(surveyData, products) {
+  return products.filter((product) => {
+    return surveyData.every((surveyItem) => {
+      const key = Object.keys(surveyItem)[0];
+      const value = surveyItem[key];
+
+      return (
+        (product.description &&
+          product.description.toLowerCase().includes(value.toLowerCase())) ||
+        (product[key] &&
+          product[key].toLowerCase().includes(value.toLowerCase()))
+      );
+    });
+  });
+}
+///---
 
 async function formatSheetData(url) {
   try {
@@ -36,7 +43,6 @@ async function formatSheetData(url) {
 
 async function getAllData() {
   try {
-    // Gọi tất cả API song song bằng Promise.all
     const [
       productData,
       productImageData,
@@ -176,6 +182,24 @@ async function creatSortByProduct(pathName) {
   const sizeSortElement = document.querySelector("#size-sort");
   const colorSortElement = document.querySelector("#color-sort");
 
+  //Thuanfix2
+  const toggleSortElements = document.querySelectorAll(".toggle-sort");
+
+  toggleSortElements.forEach((toggleSortElement) => {
+    const sortType = toggleSortElement.nextElementSibling;
+    const icon = toggleSortElement.querySelector("i");
+
+    toggleSortElement.addEventListener("click", () => {
+      const isOpen = sortType.style.display === "block";
+      sortType.style.display = isOpen ? "none" : "block";
+
+      icon.className = isOpen
+        ? "fas fa-sort-up fa-lg"
+        : "fas fa-sort-down fa-lg";
+    });
+  });
+  //   ---
+
   showSkeleton(sizeSortElement, 5, "sort");
   showSkeleton(colorSortElement, 5, "sort");
 
@@ -255,6 +279,10 @@ async function creatSortByProduct(pathName) {
 
 //Thuanfix
 async function getCurrentDataForPage(url) {
+  //   Thuanfix2
+  if (url === "/product/info.html") return;
+  //---
+
   const listProductElement = document.querySelector(".list-product");
   const urlParams = new URLSearchParams(window.location.search);
   const selectedSize = urlParams.get("size");
@@ -280,29 +308,18 @@ async function getCurrentDataForPage(url) {
   } else if (url === "/pages/baby.html") {
     filterData = data.filter((c) => c.type === "baby");
   }
-  if (userResponses) {
-    let matchedProducts = [];
-    let otherProducts = [];
+  //Thuanfix2
+  if (userResponses.length > 0) {
+    const matchedProducts = [];
+    const otherProducts = [];
     const matchedProductIds = new Set();
 
-    Object.entries(userResponses).forEach(([key, value]) => {
-      if (value) {
-        filterData.forEach((product) => {
-          let shouldAdd = false;
+    const filteredProducts = filterProductsBySurvey(userResponses, filterData);
 
-          if (key === "color" && product.color.some((c) => c.id === value)) {
-            shouldAdd = true;
-          } else if (key === "gender" && product.gender === value) {
-            shouldAdd = true;
-          } else if (key === "age" && product.ageGroup === value) {
-            shouldAdd = true;
-          }
-
-          if (shouldAdd && !matchedProductIds.has(product.id)) {
-            matchedProducts.push(product);
-            matchedProductIds.add(product.id);
-          }
-        });
+    filteredProducts.forEach((product) => {
+      if (!matchedProductIds.has(product.id)) {
+        matchedProducts.push(product);
+        matchedProductIds.add(product.id);
       }
     });
 
@@ -312,8 +329,11 @@ async function getCurrentDataForPage(url) {
       }
     });
 
-    filterData = [...matchedProducts, ...otherProducts];
+    const finalFilteredProducts = [...matchedProducts, ...otherProducts];
+
+    console.log(finalFilteredProducts);
   }
+  ///---
 
   if (selectedColor) {
     filterData = filterData.filter((c) =>
@@ -362,6 +382,27 @@ getCurrentDataForPage(pathName);
 
 //Thuanfix(tach)
 function addToCart(id, name, image, price, color_id, size_id, number) {
+  //Thuanfix2
+  toastr["success"]("Add to cart successfully");
+
+  toastr.options = {
+    closeButton: false,
+    debug: false,
+    newestOnTop: false,
+    progressBar: true,
+    positionClass: "toast-top-right",
+    preventDuplicates: false,
+    onclick: null,
+    showDuration: "300",
+    hideDuration: "1000",
+    timeOut: "5000",
+    extendedTimeOut: "1000",
+    showEasing: "swing",
+    hideEasing: "linear",
+    showMethod: "fadeIn",
+    hideMethod: "fadeOut",
+  };
+
   const cart = getCart();
   const indexProductCart = cart.findIndex(
     (product) =>
@@ -376,13 +417,15 @@ function addToCart(id, name, image, price, color_id, size_id, number) {
     cart.push({ id, name, image, price, color_id, size_id, number });
   }
   localStorage.setItem("cart", JSON.stringify(cart));
-  console.log(cart);
-  alert("Đã thêm vào giỏ hàng");
+  //Thuanfix2
+  document.querySelector(".cart-quantity").textContent = getCart().length;
+  //---
 }
 
 // trang infor product
 async function getInfoProductPage(fullUrl, pathName) {
   if (pathName !== "/product/info.html") return;
+
   const data = await getAllData();
   const urlObj = new URL(fullUrl);
   const nameParam = urlObj.searchParams.get("name");
@@ -436,11 +479,23 @@ async function getInfoProductPage(fullUrl, pathName) {
 
   infoProductSizeElement.appendChild(sizeSelectElement);
 
+  //   Thuanfix2
+  const inventoryElement = document.querySelector(".inventory");
+  inventoryElement.textContent = "Kho: " + product.amount;
+  //----
+
   const buttonElement = document.querySelector(".button-cart");
   buttonElement.addEventListener("click", () => {
     const colorSelected = document.querySelector("#color-select");
     const sizeSelected = document.querySelector("#size-select");
     const numberSelected = document.querySelector("#number-select");
+
+    //   Thuanfix2
+    if (Number(product.amount) <= 0) {
+      alert("Xin lỗi quý khách, mặt hàng này đã hết!");
+      return;
+    }
+    //----
 
     if (!colorSelected || !sizeSelected || !numberSelected) {
       alert("Vui lòng chọn màu, size và số lượng");

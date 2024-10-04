@@ -135,32 +135,9 @@
     </section>
     <section class="preview">
       <h2 align="center">Best Sellers</h2>
-      <div class="row-bestsale">
-        <figure class="item">
-          <a href="./product/info.html">
-            <img src="./images/home/AN07.png" alt="" width="100%" />
-            <figcaption>Áo Thun Waffle</figcaption>
-          </a>
-        </figure>
-        <figure class="item">
-          <a href="./product/info.html">
-            <img src="./images/home/QM01.png" alt="" width="100%" />
-            <figcaption>Quần Washed Jersey</figcaption>
-          </a>
-        </figure>
-        <figure class="item">
-          <a href="./product/info.html">
-            <img src="./images/home/TX01.png" width="100%" />
-            <figcaption>Túi Bán Nguyệt</figcaption>
-          </a>
-        </figure>
-        <figure class="item">
-          <a href="./product/info.html">
-            <img src="./images/home/BABY01.png" alt="" width="100%" />
-            <figcaption>Áo Khoác Chống UV</figcaption>
-          </a>
-        </figure>
-      </div>
+      <!-- Thuanfix2 -->
+      <div class="row-bestsale"></div>
+      <!-- --- -->
     </section>
 
     <h3 style="text-align: center">
@@ -168,14 +145,27 @@
     </h3>
 
     <div id="suggestion-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2>Hãy cho chúng tôi biết sở thích của bạn!</h2>
-            <div id="quiz"></div>
-            <div id="suggestions"></div>
-        </div>
+      <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <h2>Hãy cho chúng tôi biết sở thích của bạn!</h2>
+        <div id="quiz"></div>
+        <div id="suggestions"></div>
+      </div>
     </div>
 
+    <div id="modal-search" class="modal-search">
+      <div class="modal-search-content">
+        <span class="close-search">&times;</span>
+        <h2>Search</h2>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Type something to search..."
+        />
+        <button id="searchButton">Search</button>
+        <div id="searchResults"></div>
+      </div>
+    </div>
 
     <footer id="footer"></footer>
     <script defer src="./main.js"></script>

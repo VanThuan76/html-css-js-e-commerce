@@ -392,6 +392,7 @@ select:focus {
   outline: none;
 }
 
+/* Thuanfix2 */
 /* áp dụng từ 769 đến vô tận px */
 @media screen and (min-width: 769px) {
   .container-icon {
@@ -404,17 +405,8 @@ select:focus {
     width: 250px;
   }
 
-  /* trang about us */
-  .row-about-us {
-    flex-wrap: nowrap;
-  }
-
-  /* trang baby */
-  .row-baby {
-    flex-wrap: nowrap;
-  }
   .card {
-    max-width: 200px;
+    max-width: 350px;
   }
 }
 
@@ -434,19 +426,12 @@ select:focus {
     width: 100%;
   }
 
-  /* trang about us */
-  .row-about-us {
-    flex-wrap: wrap;
-  }
-  /* trang baby */
-  .row-baby {
-    flex-wrap: wrap;
-  }
   .container-sort {
     width: 100%;
+    padding: 0 10px;
   }
   .card {
-    max-width: 250px;
+    width: 300px;
   }
   .list-product {
     display: flex;
@@ -455,30 +440,6 @@ select:focus {
     justify-content: center;
   }
 
-  /* trang women */
-  .row-women {
-    flex-wrap: wrap;
-  }
-  .container-sort {
-    width: 100%;
-  }
-  .card {
-    max-width: 250px;
-  }
-  .list-product {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  /* trang sản phẩm */
-  .row-product {
-    flex-wrap: wrap;
-    width: 100%;
-  }
-  .row-product > .info-product {
-    width: 100%;
-  }
   /* Thuanfix */
   .row-product > div {
     margin: 0px !important;
@@ -489,7 +450,7 @@ select:focus {
   .name-product {
     font-size: 20px !important;
   }
-  .row-product{
+  .row-product {
     margin-top: 50px;
   }
   select {

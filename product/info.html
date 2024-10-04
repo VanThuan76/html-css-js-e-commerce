@@ -10,16 +10,17 @@
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/product/info.css" />
-    <!-- <link rel="stylesheet" href="css/preloader.css" /> -->
+    <!-- // thư viện icon -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
-    <!-- // thư viện icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- thư viện swiperjs -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
+    <!-- Thuanfix2 thư viện toaster -->
+    <link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
 </head>
 
 <body>
@@ -73,6 +74,8 @@
                         </select>
                     </div>
                 </div>
+                <hr />
+                <span class="inventory"></span>
                 <button class="button-cart">THÊM VÀO GIỎ HÀNG</button>
             </div>
 
@@ -83,6 +86,20 @@
         <p class="content-description"></p>
     </section>
 
+    <!-- Thuanfix2 -->
+    <div id="modal-search" class="modal-search">
+        <div class="modal-search-content">
+          <span class="close-search">&times;</span>
+          <h2>Search</h2>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Type something to search..."
+          />
+          <button id="searchButton">Search</button>
+          <div id="searchResults"></div>
+        </div>
+      </div>
     <footer id="footer"></footer>
     <script defer src="../main.js"></script>
     <script defer src="../js/product.js"></script>

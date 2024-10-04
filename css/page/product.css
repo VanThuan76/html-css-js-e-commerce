@@ -68,7 +68,25 @@ img {
   color: grey;
   font-size: 20px;
 }
-
+/* Thuanfix2 */
+.toggle-sort {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.toggle-sort > .fa-sort-down {
+  margin-bottom: 10px;
+}
+.toggle-sort > .fa-sort-up {
+  margin-top: 10px;
+}
+.container-sort > #size-sort,
+.container-sort > #color-sort {
+  display: block;
+}
+/* --- */
 .list-product {
   display: flex;
   align-items: flex-start;
@@ -116,7 +134,8 @@ input {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
+/* Mobile */
+@media screen and (max-width: 768px) {
   .row-product {
     flex-direction: column;
   }
@@ -129,4 +148,11 @@ input {
   .col-product {
     padding: 0;
   }
+
+  /* Thuanfix2 */
+  .container-sort > #size-sort,
+  .container-sort > #color-sort {
+    display: none;
+  }
+  /* --- */
 }

@@ -44,21 +44,58 @@
                     <i class="fas fa-arrow-left fa-lg"></i>
                   </div>
                 <h2>SORT BY</h2>
-                <h3>SIZE</h3>
-                <hr />
+                <!-- //Thuanfix2 -->
+                <div class="toggle-sort">
+                    <h3>SIZE</h3>
+                    <i class="fas fa-sort-down fa-lg"></i>
+                </div>
                 <div id="size-sort"></div>
-                <h3 >COLOR</h3>
                 <hr />
+                <div class="toggle-sort">
+                    <h3>COLOR</h3>
+                    <i class="fas fa-sort-down fa-lg"></i>
+                </div>
                 <div id="color-sort"></div>
+                <!-- ---- -->
             </div>
             <div class="col-product">
                 <img class="header-img" src="../images/product/fashion.webp" alt="" />
                 <div class="list-product"></div>
             </div>
     </section>
+
+    <!-- Thuanfix2 -->
+    <div id="modal-search" class="modal-search">
+        <div class="modal-search-content">
+          <span class="close-search">&times;</span>
+          <h2>Search</h2>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Type something to search..."
+          />
+          <button id="searchButton">Search</button>
+          <div id="searchResults"></div>
+        </div>
+    </div>
+    <!-- --- -->
+
     <footer id="footer"></footer>
     <script defer src="../main.js"></script>
     <script defer src="../js/product.js"></script>
+    <!-- //Thuanfix2 -->
+    <script
+    async
+    defer
+    src="https://apis.google.com/js/api.js"
+    onload="this.onload=function(){};init()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()"
+  ></script>
+  <script>
+    async function init() {
+      const products = await getAllData();
+    }
+  </script>
 </body>
 
 </html>

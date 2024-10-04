@@ -1,4 +1,59 @@
-// xu ly link
+const searchResults = document.getElementById("searchResults");
+
+// Thuanfix2
+async function getSearchData(inputValue) {
+  const url = `https://script.google.com/macros/s/AKfycbwoY4oVKR9kwaZLPQAiF8dG99uXicmGJPhOf0DUFwRaVU77Wq5n8ZVzBXg-aiTq4A/exec?name=${encodeURIComponent(
+    inputValue
+  )}`;
+
+  const requestOptions = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  };
+
+  displaySearchResults([], true);
+  searchResults.innerHTML += "<p>Loading...</p>";
+
+  try {
+    let response = await fetch(url, requestOptions);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    let data = await response.json();
+    displaySearchResults(data, false);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+function displaySearchResults(results, isLoading) {
+  searchResults.innerHTML = "";
+  if (results.length === 0 && isLoading == false) {
+    searchResults.innerHTML = "<p>No results found</p>";
+    searchResults.classList.remove("show");
+    return;
+  }
+
+  searchResults.classList.add("show");
+
+  results.forEach((result) => {
+    const resultItem = document.createElement("div");
+    resultItem.classList.add("result-item");
+    resultItem.innerHTML = `
+        <a href="/product/info.html?name=${textToSlug(result.name)}">
+          <h3>${result.name}</h3>
+          <p>Price: ${result.price.toLocaleString()} VND</p>
+        </a>
+      `;
+    searchResults.appendChild(resultItem);
+  });
+}
+// ---
+
 function textToSlug(text) {
   return text
     .toLowerCase()
@@ -32,7 +87,15 @@ const menu = [
   },
   {
     label: "",
+    href: "https://script.google.com/macros/s/AKfycbzic6yivUSu3kwHkOd0l0gf-JlZWckYpTIa8y6t5GhB5pgkOGDQvUbBHX25FMl2SYA/exec",
+  },
+  {
+    label: "",
     href: "/pages/cart",
+  },
+  {
+    label: "",
+    href: "/pages/search",
   },
   {
     label: "MEN",
@@ -51,8 +114,10 @@ const menu = [
     href: "/pages/about-us",
   },
 ];
+
 // Hiển thị menu
 const menuElement = document.getElementById("navbar-component");
+
 function getMenu() {
   const navElement = document.createElement("nav");
   //Thuanfix
@@ -76,20 +141,69 @@ function getMenu() {
       liElement.appendChild(logoElement);
     } else {
       liElement.classList.add("secondary-nav");
-      if (item.href === "/pages/cart") {
+      if (item.href === "/pages/search") {
+        const iconSearchElement = document.createElement("i");
+        iconSearchElement.classList.add("fas", "fa-search");
+        liElement.appendChild(iconSearchElement);
+        // xu ly search
+        const modalElement = document.getElementById("modal-search");
+        const searchInput = document.getElementById("searchInput");
+        const searchButton = document.getElementById("searchButton");
+        iconSearchElement.onclick = function () {
+          modalElement.style.display = "flex";
+        };
+        window.onclick = function (event) {
+          if (event.target === modalElement) {
+            modalElement.style.display = "none";
+          }
+        };
+        searchButton.addEventListener("click", function () {
+          const inputValue = searchInput.value;
+          if (inputValue) {
+            getSearchData(inputValue);
+          } else {
+            alert("Please enter a search term");
+          }
+        });
+        // Thuanfix2
+        searchInput.addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            const inputValue = searchInput.value.trim();
+            if (inputValue) {
+              getSearchData(inputValue);
+            } else {
+              alert("Please enter a search term");
+            }
+          }
+        });
+      } else if (item.href === "/pages/cart") {
+        const carts = JSON.parse(localStorage.getItem("cart")) || [];
         const iconCartElement = document.createElement("i");
         iconCartElement.classList.add("fas", "fa-shopping-cart");
         iconCartElement.style.cursor = "pointer";
+
+        const quantityElement = document.createElement("span");
+        quantityElement.classList.add("cart-quantity");
+        quantityElement.textContent = carts.length;
+
         iconCartElement.addEventListener("click", () => {
           window.open(item.href + ".html");
         });
+
+        liElement.appendChild(iconCartElement);
+        liElement.appendChild(quantityElement);
+      } else if (item.href.includes("https")) {
+        const iconCartElement = document.createElement("i");
+        iconCartElement.classList.add("fas", "fa-user");
+        iconCartElement.style.cursor = "pointer";
         liElement.appendChild(iconCartElement);
       }
     }
 
-    // đặt href của aElement thành href của item, hiển thị nội dung của item ở đó
-    aElement.href = item.href + ".html";
-
+    if (item.href !== "/pages/search" && !item.href.includes("https")) aElement.href = item.href + ".html";
+    if(item.href.includes("https")) aElement.href = item.href
+    //---
     aElement.textContent = item.label;
 
     liElement.appendChild(aElement);
@@ -112,41 +226,58 @@ function getMenuMobile() {
   navElement.classList.add("nav-list-menu-mobile");
   const ulElement = document.createElement("ul");
   ulElement.classList.add("list-menu-mobile");
+
+  //Thuanfix2
   // xử lý, lặp qua các phần tử từ trong mảng từ đầu đến cuối
   menu.forEach((item) => {
-    // tạo thành phần li, thêm class primary-nav hoặc secondary-nav
-    const liElement = document.createElement("li");
-    const aElement = document.createElement("a");
-
-    // nếu href của item là AMEE thì thêm class primary-nav, ngược lại thêm secondary-nav
     if (item.href === "/index") {
+      const liElement = document.createElement("li");
       liElement.classList.add("primary-nav");
-
       const logoElement = document.createElement("img");
       logoElement.src = "../images/icon/icon_shop.png";
       logoElement.alt = "logo";
-
       liElement.appendChild(logoElement);
-    } else {
+      ulElement.appendChild(liElement);
+    } else if (
+      item.label !== "" &&
+      item.href !== "/pages/cart" &&
+      item.href !== "/pages/search"
+    ) {
+      const liElement = document.createElement("li");
+      const aElement = document.createElement("a");
+      liElement.classList.add("primary-nav");
       liElement.classList.add("secondary-nav");
-      if (item.href === "/pages/cart") {
-        const iconCartElement = document.createElement("i");
-        iconCartElement.classList.add("fas", "fa-shopping-cart");
-        liElement.appendChild(iconCartElement);
-      }
+      aElement.href = item.href + ".html";
+      aElement.textContent = item.label;
+      liElement.appendChild(aElement);
+      ulElement.appendChild(liElement);
     }
-
-    // đặt href của aElement thành href của item, hiển thị nội dung của item ở đó
-    aElement.href = item.href + ".html";
-
-    aElement.textContent = item.label;
-
-    liElement.appendChild(aElement);
-    ulElement.appendChild(liElement);
-    navElement.appendChild(ulElement);
-    containerMenuMobileElement.appendChild(navElement);
   });
 
+  const searchLiElement = document.createElement("li");
+  const iconSearchElement = document.createElement("i");
+  iconSearchElement.classList.add("fas", "fa-search");
+  searchLiElement.appendChild(iconSearchElement);
+  ulElement.appendChild(searchLiElement);
+
+  const cartLiElement = document.createElement("li");
+  const iconCartElement = document.createElement("i");
+  iconCartElement.classList.add("fas", "fa-shopping-cart");
+  cartLiElement.appendChild(iconCartElement);
+  ulElement.appendChild(cartLiElement);
+
+  iconSearchElement.onclick = function () {
+    const modalElement = document.getElementById("modal-search");
+    modalElement.style.display = "flex";
+  };
+
+  iconCartElement.onclick = function () {
+    window.location.href = "/pages/cart.html";
+  };
+
+  navElement.appendChild(ulElement);
+  containerMenuMobileElement.appendChild(navElement);
+  //  ---
   function toggleMenuMobile() {
     const navElement = document.querySelector(".nav-list-menu-mobile");
     if (containerMenuMobileElement.classList.contains("showMenu")) {
@@ -184,12 +315,13 @@ document.body.addEventListener("scroll", () => {
   }
 });
 
-//Back button - Thuanfix
-
+//Back button - Thuanfix - Thuanfix2
 const backButton = document.querySelector(".icon-back");
-backButton.addEventListener("click", () => {
-  window.location.href = "/index.html";
-});
+backButton &&
+  backButton.addEventListener("click", () => {
+    window.location.href = "/index.html";
+  });
+// ---
 
 // hien thi footer
 const footer = {
@@ -318,3 +450,91 @@ function getFooter() {
   footerElement.appendChild(itemContainerElement);
 }
 getFooter();
+
+//Thuanfix2
+// hien thi best seller
+const API_KEY = "AIzaSyBdvPyy8WwVZvcR2XBl7PFREd-wAyw63b4";
+const SHEET_ID = "1NDejtz1rjirw41xGUqOHda8cpKTZFLZYFhcywE6spb4";
+const TABLE_PRODUCT = "table_product!A1:H200";
+const TABLE_CUSTOMER_PRODUCT = "table_customer_product!A1:I200";
+const TABLE_PRODUCT_IMAGE = "table_product_image!A1:C200";
+const TABLE_PRODUCT_SIZE = "table_product_size!A1:C200";
+const TABLE_PRODUCT_COLOR = "table_product_color!A1:C200";
+const TABLE_COLOR = "table_color!A1:C200";
+const TABLE_SIZE = "table_size!A1:B200";
+
+async function formatSheetData(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const [columns, ...rows] = data.values;
+    const mapData = rows.map((row) => {
+      return columns.reduce((acc, column, index) => {
+        acc[column] = row[index] !== undefined ? row[index] : null;
+        return acc;
+      }, {});
+    });
+    return mapData;
+  } catch (error) {}
+}
+
+async function getBestSellerData() {
+  try {
+    const [productData, productImageData] = await Promise.all([
+      formatSheetData(
+        `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${TABLE_PRODUCT}?key=${API_KEY}`
+      ),
+      formatSheetData(
+        `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${TABLE_PRODUCT_IMAGE}?key=${API_KEY}`
+      ),
+    ]);
+    if (!productData || !productImageData) {
+      throw new Error("Dữ liệu trả về từ API bị lỗi hoặc rỗng");
+    }
+
+    const mixProducts = productData
+      .map((product) => {
+        const image = productImageData.filter(
+          (c) => c.product_id === product.id
+        );
+        return { ...product, image };
+      })
+      .filter((product) => product.is_best_seller === "TRUE");
+
+    return mixProducts;
+  } catch (error) {
+    console.error("Lỗi khi lấy dữ liệu:", error.message);
+    return [];
+  }
+}
+
+function getRandomProducts(products, count = 4) {
+  const shuffled = products.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
+
+async function displayBestSellers() {
+  const bestSellerContainer = document.querySelector(".row-bestsale");
+  const bestSellerProducts = await getBestSellerData();
+
+  const randomProducts = getRandomProducts(bestSellerProducts, 4);
+
+  bestSellerContainer.innerHTML = "";
+
+  randomProducts.forEach((product) => {
+    const imageUrl = product.image[0].image_url;
+    const productHTML = `
+        <figure class="item">
+          <a href="./product/info.html?product_id=${product.id}">
+            <img src="${imageUrl}" alt="${product.name}" width="100%" />
+            <figcaption>${product.name}</figcaption>
+          </a>
+        </figure>
+      `;
+    bestSellerContainer.innerHTML += productHTML;
+  });
+}
+
+displayBestSellers();
+
+// ---
