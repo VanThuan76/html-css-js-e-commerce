@@ -1,8 +1,31 @@
 const searchResults = document.getElementById("searchResults");
 
+//Thuanfix3
+function storeUserIdFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+
+  if (urlParams.has("user")) {
+    const userId = urlParams.get("user");
+
+    localStorage.setItem("userId", userId);
+    urlParams.delete("user");
+    const newUrl =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname +
+      urlParams.toString();
+    window.history.replaceState({ path: newUrl }, "", newUrl);
+  } else {
+    console.log("Không có query parameter 'user' trong URL.");
+  }
+}
+window.onload = storeUserIdFromUrl;
+// ***
+
 // Thuanfix2
 async function getSearchData(inputValue) {
-  const url = `https://script.google.com/macros/s/AKfycbwoY4oVKR9kwaZLPQAiF8dG99uXicmGJPhOf0DUFwRaVU77Wq5n8ZVzBXg-aiTq4A/exec?name=${encodeURIComponent(
+  const url = `https://script.google.com/macros/s/AKfycbwqKvYW7ZTpKR-Jat1vHLI7FkJmeaVY2LyBwDyJtVzfjUMuyQPatLycJSEs6lS_JWk/exec?name=${encodeURIComponent(
     inputValue
   )}`;
 
@@ -87,7 +110,7 @@ const menu = [
   },
   {
     label: "",
-    href: "https://script.google.com/macros/s/AKfycbzic6yivUSu3kwHkOd0l0gf-JlZWckYpTIa8y6t5GhB5pgkOGDQvUbBHX25FMl2SYA/exec",
+    href: "https://script.google.com/macros/s/AKfycbwqKvYW7ZTpKR-Jat1vHLI7FkJmeaVY2LyBwDyJtVzfjUMuyQPatLycJSEs6lS_JWk/exec",
   },
   {
     label: "",
@@ -194,15 +217,28 @@ function getMenu() {
         liElement.appendChild(iconCartElement);
         liElement.appendChild(quantityElement);
       } else if (item.href.includes("https")) {
-        const iconCartElement = document.createElement("i");
-        iconCartElement.classList.add("fas", "fa-user");
-        iconCartElement.style.cursor = "pointer";
-        liElement.appendChild(iconCartElement);
+        //Thuanfix3
+        const iconUserElement = document.createElement("i");
+        iconUserElement.classList.add("fas", "fa-user");
+        iconUserElement.style.cursor = "pointer";
+        liElement.appendChild(iconUserElement);
+        const userId = localStorage.getItem("userId");
+        if (userId) {
+          iconUserElement.addEventListener("click", () => {
+            window.location.href = "/pages/order.html";
+          });
+        } else {
+          iconUserElement.addEventListener("click", () => {
+            window.open(item.href);
+          });
+        }
+        // ***
       }
     }
 
-    if (item.href !== "/pages/search" && !item.href.includes("https")) aElement.href = item.href + ".html";
-    if(item.href.includes("https")) aElement.href = item.href
+    if (item.href !== "/pages/search" && !item.href.includes("https"))
+      aElement.href = item.href + ".html";
+    if (item.href.includes("https")) aElement.href = item.href;
     //---
     aElement.textContent = item.label;
 
@@ -456,7 +492,9 @@ getFooter();
 const API_KEY = "AIzaSyBdvPyy8WwVZvcR2XBl7PFREd-wAyw63b4";
 const SHEET_ID = "1NDejtz1rjirw41xGUqOHda8cpKTZFLZYFhcywE6spb4";
 const TABLE_PRODUCT = "table_product!A1:H200";
-const TABLE_CUSTOMER_PRODUCT = "table_customer_product!A1:I200";
+//Thuanfix3
+const TABLE_CUSTOMER_PRODUCT = "table_customer_product_order!A1:I200";
+//*** */
 const TABLE_PRODUCT_IMAGE = "table_product_image!A1:C200";
 const TABLE_PRODUCT_SIZE = "table_product_size!A1:C200";
 const TABLE_PRODUCT_COLOR = "table_product_color!A1:C200";

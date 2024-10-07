@@ -69,9 +69,6 @@ async function getAllData() {
       formatSheetData(
         `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${TABLE_COLOR}?key=${API_KEY}`
       ),
-      formatSheetData(
-        `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${TABLE_CUSTOMER_PRODUCT}?key=${API_KEY}`
-      ),
     ]);
 
     // Kiểm tra xem dữ liệu có hợp lệ trước khi xử lý
@@ -309,7 +306,7 @@ async function getCurrentDataForPage(url) {
     filterData = data.filter((c) => c.type === "baby");
   }
   //Thuanfix2
-  if (userResponses.length > 0) {
+  if (userResponses && userResponses.length > 0) {
     const matchedProducts = [];
     const otherProducts = [];
     const matchedProductIds = new Set();

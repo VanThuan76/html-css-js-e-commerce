@@ -169,7 +169,8 @@ function getCheckOutPage(pathName) {
   checkOutFormElement.addEventListener("submit", function (event) {
     event.preventDefault(); // Ngăn hành vi submit mặc định của form
 
-    // Lấy dữ liệu từ form
+    // Lấy dữ liệu từ form - Thuanfix3
+    const userId = localStorage.getItem("userId");
     const name = document.getElementById("name").value;
     const address = document.getElementById("address").value;
     const phone = document.getElementById("phone").value;
@@ -178,6 +179,7 @@ function getCheckOutPage(pathName) {
 
     // Tạo object chứa dữ liệu
     const checkoutData = {
+      user_id: userId,
       name: name,
       address: address,
       phone: phone,
@@ -186,6 +188,8 @@ function getCheckOutPage(pathName) {
       total_price: total,
       products: productCheckout.map((cartProduct) => {
         return {
+          color_id: cartProduct.color_id,
+          size_id: cartProduct.size_id,
           product_id: cartProduct.id,
           quantity: Number(cartProduct.number),
           total_price: Number(cartProduct.price),
@@ -193,8 +197,10 @@ function getCheckOutPage(pathName) {
       }),
     };
 
+    // ***
+
     fetch(
-      "https://script.google.com/macros/s/AKfycbzyxFM1cPfSOW9KAJVsvvZl8X_B002w29Aahf0WZlMgyneASMW9S4mjeiuXABrrEw4/exec",
+      "https://script.google.com/macros/s/AKfycbwjWpVu84QJSFxBhcw7HCpWRa_GBCqE9Wx-i35UTZDEyR7CXKnUh7KKSK8k4tVHVo4/exec",
       {
         redirect: "follow",
         mode: "no-cors",
