@@ -11,13 +11,31 @@ main {
   padding: 20px;
 }
 
-#order-list {
+#order-list,
+#infor-user {
   background-color: white;
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 50px 0;
 }
 
 h2 {
   margin-top: 0;
+}
+
+#logout {
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#logout:hover {
+  background-color: #444; /* Màu nền khi hover */
 }

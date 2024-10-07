@@ -238,7 +238,6 @@ function getMenu() {
 
     if (item.href !== "/pages/search" && !item.href.includes("https"))
       aElement.href = item.href + ".html";
-    if (item.href.includes("https")) aElement.href = item.href;
     //---
     aElement.textContent = item.label;
 
@@ -493,6 +492,7 @@ const API_KEY = "AIzaSyBdvPyy8WwVZvcR2XBl7PFREd-wAyw63b4";
 const SHEET_ID = "1NDejtz1rjirw41xGUqOHda8cpKTZFLZYFhcywE6spb4";
 const TABLE_PRODUCT = "table_product!A1:H200";
 //Thuanfix3
+const TABLE_CUSTOMER = "table_customer!A1:G200";
 const TABLE_CUSTOMER_PRODUCT = "table_customer_product_order!A1:I200";
 //*** */
 const TABLE_PRODUCT_IMAGE = "table_product_image!A1:C200";
